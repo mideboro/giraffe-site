@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Tracker | GIRAFFE Tools</title>
+  <meta name="description" content="A local browser payment tracker for receivables, payables, partial payments, due dates, and exportable records." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css?v=13" />
+</head>
+<body class="tool-page">
+  <div class="ambient"></div>
+
+  <header class="site-header">
+    <a class="brand" href="../../" aria-label="GIRAFFE home">
+      <span class="brand-mark">G</span>
+      <span>GIRAFFE</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../#network">Network</a>
+      <a href="../../#tools">Tools</a>
+      <a href="../../#systems">Solutions</a>
+      <a href="../../#company">Company</a>
+    </nav>
+    <a class="header-cta" href="../../#company">Discuss Coverage</a>
+  </header>
+
+  <main>
+    <section class="tool-hero section-pad">
+      <a class="page-back" href="../../#tools">Tools</a>
+      <p class="eyebrow">Payment Tracker</p>
+      <h1>Payment visibility</h1>
+      <p class="hero-lede">Know what is coming in, what is going out, and what requires attention.</p>
+    </section>
+
+    <section id="payment-tracker" class="payment-tool section-pad">
+      <div class="payment-tool-head">
+        <div class="section-intro wide">
+          <p class="eyebrow">Local Browser Tool</p>
+          <h2>Track balances, due dates, and partial payments.</h2>
+          <p>This tracker stores entries in the browser on this device. There is no account, cloud sync, or shared database unless you export the data yourself.</p>
+        </div>
+        <div class="privacy-note">Local only · No account</div>
+      </div>
+
+      <section class="dashboard" aria-label="Payment summary">
+        <div class="metric"><small>Outstanding In</small><strong id="metricIn">$0</strong></div>
+        <div class="metric"><small>Outstanding Out</small><strong id="metricOut">$0</strong></div>
+        <div class="metric"><small>Overdue</small><strong id="metricOverdue">$0</strong></div>
+        <div class="metric"><small>Due in 7 Days</small><strong id="metricDueSoon">$0</strong></div>
+      </section>
+
+      <div class="payment-layout">
+        <section class="panel">
+          <div class="tabs">
+            <button class="tab active" data-type="in">Money In</button>
+            <button class="tab" data-type="out">Money Out</button>
+          </div>
+
+          <h2 id="formTitle">Add Money In</h2>
+
+          <div class="form-grid">
+            <div class="full">
+              <label for="name">Name / Company</label>
+              <input id="name" type="text" placeholder="Client, contractor, vendor..." />
+            </div>
+
+            <div>
+              <label for="amount">Amount</label>
+              <input id="amount" type="number" min="0.01" step="0.01" placeholder="0.00" />
+            </div>
+
+            <div>
+              <label for="amountPaid">Amount Already Paid</label>
+              <input id="amountPaid" type="number" min="0" step="0.01" value="0" />
+            </div>
+
+            <div>
+              <label for="dueDate">Due Date</label>
+              <input id="dueDate" type="date" />
+            </div>
+
+            <div>
+              <label for="recurring">Recurring</label>
+              <select id="recurring">
+                <option value="none">None</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+
+            <div class="full">
+              <label for="notes">Notes / Reference</label>
+              <textarea id="notes" placeholder="Invoice number, work description, or internal reference..."></textarea>
+            </div>
+          </div>
+
+          <div class="inline-note">Partial balances are calculated automatically.</div>
+
+          <div class="actions">
+            <button class="primary" id="saveBtn">Save Entry</button>
+            <button class="secondary" id="clearBtn">Clear</button>
+          </div>
+
+          <div class="data-tools">
+            <p>Export JSON for backup, CSV for spreadsheets, or import a previous JSON backup to replace the current browser data.</p>
+            <div class="actions">
+              <button class="secondary" id="exportBtn">Export JSON</button>
+              <button class="secondary" id="exportCsvBtn">Export CSV</button>
+              <button class="secondary" id="importBtn">Import JSON</button>
+              <input id="importFile" type="file" accept=".json,application/json" hidden />
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="toolbar">
+            <h2 id="listTitle">Money In</h2>
+            <div class="filters">
+              <select id="statusFilter">
+                <option value="all">All statuses</option>
+                <option value="open">Open</option>
+                <option value="overdue">Overdue</option>
+                <option value="due-soon">Due in 7 days</option>
+                <option value="paid">Paid</option>
+              </select>
+              <select id="sortBy">
+                <option value="priority">Priority</option>
+                <option value="due-asc">Due date ascending</option>
+                <option value="due-desc">Due date descending</option>
+                <option value="amount-desc">Amount descending</option>
+              </select>
+            </div>
+          </div>
+          <div id="entryList" class="entry-list"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="brand">
+      <span class="brand-mark">G</span>
+      <span>GIRAFFE</span>
+    </div>
+    <div>
+      <a href="../../#network">Network</a>
+      <a href="../../#tools">Tools</a>
+      <a href="../../#systems">Solutions</a>
+      <a href="../../#company">Company</a>
+    </div>
+    <p>Giraffe Transport Services LLC · Nashville, Tennessee · info@giraffetransport.com</p>
+  </footer>
+
+  <script src="../../script.js?v=13"></script>
+</body>
+</html>
