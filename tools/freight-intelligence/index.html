@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LTL Density & Freight Class Calculator | GIRAFFE Freight Intelligence</title>
+  <meta name="description" content="Calculate shipment density and estimate LTL freight class with GIRAFFE Freight Intelligence. Density-based estimate only." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css?v=13" />
+</head>
+<body class="tool-page">
+  <div class="ambient"></div>
+
+  <header class="site-header">
+    <a class="brand" href="../../" aria-label="GIRAFFE home">
+      <span class="brand-mark">G</span>
+      <span>GIRAFFE</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../#network">Network</a>
+      <a href="../../#tools">Tools</a>
+      <a href="../../#systems">Solutions</a>
+      <a href="../../#company">Company</a>
+    </nav>
+    <a class="header-cta" href="../../#company">Discuss Coverage</a>
+  </header>
+
+  <main>
+    <section class="tool-hero section-pad">
+      <a class="page-back" href="../../#tools">Tools</a>
+      <p class="eyebrow">Freight Intelligence</p>
+      <h1>LTL Density & Freight Class Calculator</h1>
+      <p class="hero-lede">Calculate density, total cube, total weight, and a density-based freight class estimate before the shipment moves.</p>
+    </section>
+
+    <section class="calculator section-pad">
+      <div class="calculator-shell">
+        <div class="calc-card input-card">
+          <h2>Shipment</h2>
+          <div class="input-grid">
+            <label>Length (in)<input type="number" id="length" placeholder="48" min="1" step="0.1"></label>
+            <label>Width (in)<input type="number" id="width" placeholder="40" min="1" step="0.1"></label>
+            <label>Height (in)<input type="number" id="height" placeholder="48" min="1" step="0.1"></label>
+            <label>Weight (lbs)<input type="number" id="weight" placeholder="500" min="1" step="0.1"></label>
+            <label>Quantity<input type="number" id="qty" value="1" min="1" step="1"></label>
+          </div>
+          <div class="calc-actions">
+            <button id="addPiece">Add Piece</button>
+            <button id="calculate" class="primary-action">Calculate</button>
+            <button id="resetAll" class="ghost-action">Reset</button>
+          </div>
+          <div id="pieceList" class="piece-list"></div>
+        </div>
+
+        <div class="calc-card result-card">
+          <h2>Result</h2>
+          <div id="emptyState" class="empty-state">Enter shipment details to calculate density and estimated freight class.</div>
+          <div id="results" class="results">
+            <div class="result-grid">
+              <div><small>Total Cube</small><strong id="totalCube">-</strong><span>cu ft</span></div>
+              <div><small>Density</small><strong id="density">-</strong><span>PCF</span></div>
+              <div><small>Total Weight</small><strong id="totalWeight">-</strong><span>lbs</span></div>
+            </div>
+            <div class="class-result">
+              <small>Estimated NMFC Class</small>
+              <strong id="classBadge">-</strong>
+            </div>
+            <div id="whatIf" class="what-if"></div>
+            <button id="copyResults" class="copy-button">Copy Results</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="checklist">
+        <strong>Measurement checklist</strong>
+        <span>Measure the extreme points, include pallet weight and height, round up, and document the loaded pallet before pickup.</span>
+      </div>
+    </section>
+
+    <section class="tool-article section-pad">
+      <article>
+        <h2>What shipment density means</h2>
+        <p>Density is the shipment weight divided by the shipment cube. In LTL freight, it is one of the inputs used to estimate freight class and compare how much space the shipment occupies against its weight.</p>
+      </article>
+      <article>
+        <h2>How this estimate works</h2>
+        <p>The calculator converts inches to cubic feet, applies quantity, divides total weight by total cube, and maps the result to a density-based class scale.</p>
+      </article>
+      <article>
+        <h2>Classification caveat</h2>
+        <p>This is a density-based estimate. Actual NMFC class can also be affected by commodity, handling, stowability, and liability. Confirm class when those factors matter.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="brand">
+      <span class="brand-mark">G</span>
+      <span>GIRAFFE</span>
+    </div>
+    <div>
+      <a href="../../#network">Network</a>
+      <a href="../../#tools">Tools</a>
+      <a href="../../#systems">Solutions</a>
+      <a href="../../#company">Company</a>
+    </div>
+    <p>Giraffe Transport Services LLC · Nashville, Tennessee · info@giraffetransport.com</p>
+  </footer>
+
+  <script src="../../script.js?v=13"></script>
+</body>
+</html>
